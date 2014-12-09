@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = MailXSMTPAPI::VERSION
   spec.authors       = ["Lance Ivy"]
   spec.email         = ["lance@kickstarter.com"]
-  spec.summary       = %q{Adds X-SMTPAPI header support to Mail}
+  spec.summary       = %q{Adds SendGrid X-SMTPAPI header support to Mail}
   spec.homepage      = "https://github.com/kickstarter/mail-x_smtpapi"
   spec.license       = "MIT"
 
