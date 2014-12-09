@@ -1,9 +1,17 @@
 require 'mail'
+require_relative 'accessors'
 
 module MailXSMTPAPI
   class Field < ::Mail::StructuredField
     FIELD_NAME = 'x-smtpapi'
     CAPITALIZED_FIELD = 'X-SMTPAPI'
+
+    # Accessors
+    include Recipients
+    include Substitutions
+    include UniqueArguments
+    include Category
+    include Filters
 
     def initialize(value = nil, charset = 'utf-8')
       super(FIELD_NAME, value || {}, charset)
