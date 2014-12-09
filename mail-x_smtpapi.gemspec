@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mail/x/smtpapi/version'
+require 'mail_x_smtpapi/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mail-x_smtpapi"
-  spec.version       = Mail::X::Smtpapi::VERSION
+  spec.version       = MailXSMTPAPI::VERSION
   spec.authors       = ["Lance Ivy"]
   spec.email         = ["lance@kickstarter.com"]
   spec.summary       = %q{Adds X-SMTPAPI header support to Mail}
