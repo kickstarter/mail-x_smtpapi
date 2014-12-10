@@ -2,7 +2,7 @@ require 'mail'
 require_relative 'accessors'
 
 module MailXSMTPAPI
-  class Field < ::Mail::StructuredField
+  class Field < ::Mail::UnstructuredField
     FIELD_NAME = 'x-smtpapi'
     CAPITALIZED_FIELD = 'X-SMTPAPI'
 
@@ -14,22 +14,23 @@ module MailXSMTPAPI
     include Filters
 
     def initialize(value = nil, charset = 'utf-8')
-      super(FIELD_NAME, value || {}, charset)
+      self.charset = charset
+      self.name = CAPITALIZED_FIELD
+      self.value = value || {}
     end
 
-    # emits JSON with extra spaces inserted for line wrapping.
     def encoded
       if empty?
         ''
       else
-        "#{CAPITALIZED_FIELD}: #{JSON.generate(value).gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')}\r\n"
+        "#{wrapped_value}\r\n"
       end
     end
 
-    # the decoded version is good for interacting with the header in code
-    # see: Mail::StructuredField#default
+    # to take advantage of folding, decoded must return a string with
+    # emits JSON with extra spaces inserted for line wrapping.
     def decoded
-      value
+      JSON.generate(value).gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')
     end
 
     def empty?

@@ -20,9 +20,15 @@ class MailXSMTPAPI::FieldTest < MiniTest::Unit::TestCase
     assert f.encoded.match(/\r\n$/)
   end
 
+  def test_encoded_is_folded
+    f = subject.new('to' => 100.times.map{ 'test@example.com'} )
+    max_line_length = f.encoded.split(/[\r\n]+/).map(&:length).max
+    assert max_line_length < 998, "max line length: #{max_line_length}"
+  end
+
   def test_decoded
-    h = {'to' => ['a@example.com']}
-    assert_equal h, subject.new(h).decoded
+    h = {'to' => ['a@example.com', 'b@example.com']}
+    assert_equal '{"to": ["a@example.com", "b@example.com"]}', subject.new(h).decoded
   end
 
   def test_empty?
