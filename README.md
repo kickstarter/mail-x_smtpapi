@@ -1,6 +1,8 @@
 # Mail::X::Smtpapi
 
-Integrates a custom X-SMTPAPI field into the [Mail](https://github.com/mikel/mail) gem.
+Integrates support for SendGrid's X-SMTPAPI field into the [Mail](https://github.com/mikel/mail) gem.
+
+Please refer to [SendGrid docs](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html) for ideas of what you can do with the X-SMTPAPI header!
 
 ## Installation
 
@@ -20,19 +22,51 @@ Or install it yourself as:
 
 ## Usage
 
-Write into the SMTPAPI header from anywhere with access to the `mail` object.
+Write into the X-SMTPAPI header from anywhere with access to the `mail` object.
 
 ### Example: Rails Mailer
 
-(TODO)
+Adapting the [Rails Guide example](http://guides.rubyonrails.org/v4.0.8/action_mailer_basics.html#edit-the-mailer):
 
-### Example: Template Helper
+```ruby
+class UserMailer < ActionMailer::Base
 
-(TODO)
+  def welcome(user)
+    @user = user
+
+    mail.smtpapi.category = 'welcome'
+    mail.smtpapi.unique_args['user_id'] = @user.id
+
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  end
+
+end
+```
 
 ### Example: Mail Interceptor
 
-(TODO)
+Adapting the [Rails Guide example](http://guides.rubyonrails.org/v4.0.8/action_mailer_basics.html#intercepting-emails):
+
+```ruby
+class SandboxEmailInterceptor
+  def self.delivering_email(message)
+    message.smtpapi.unique_args['original'] = message.to
+    message.to = ['sandbox@example.com']
+  end
+end
+```
+
+### Example: Template Helper
+
+```ruby
+module MailerABHelper
+  def show_variant?(name)
+    variant = rand(2) == 0 ? 'main' : 'alternate'
+    mail.smtpapi.unique_args["#{name}_variant"] = variant
+    return variant == 'alternate'
+  end
+end
+```
 
 ## Contributing
 

@@ -27,8 +27,8 @@ module MailXSMTPAPI
       end
     end
 
-    # to take advantage of folding, decoded must return a string with
-    # emits JSON with extra spaces inserted for line wrapping.
+    # to take advantage of folding, decoded must return a string of
+    # JSON with extra spaces inserted for line wrapping.
     def decoded
       JSON.generate(value).gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')
     end
