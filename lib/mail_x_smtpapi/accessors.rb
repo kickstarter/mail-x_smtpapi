@@ -57,7 +57,7 @@ module MailXSMTPAPI
 
   module Sections
     def sections
-      value['sections'] ||= {}
+      value['section'] ||= {}
     end
   end
 
