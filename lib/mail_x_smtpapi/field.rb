@@ -12,6 +12,7 @@ module MailXSMTPAPI
     include UniqueArguments
     include Category
     include Filters
+    include Sections
 
     def initialize(value = nil, charset = 'utf-8')
       self.charset = charset

@@ -55,4 +55,10 @@ module MailXSMTPAPI
     end
   end
 
+  module Sections
+    def sections
+      value['sections'] ||= {}
+    end
+  end
+
 end
