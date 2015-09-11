@@ -1,5 +1,7 @@
 # Mail::X::Smtpapi
 
+[![Gem Version](https://badge.fury.io/rb/mail-x_smtpapi.svg)](http://badge.fury.io/rb/mail-x_smtpapi) [![Circle CI](https://img.shields.io/circleci/project/kickstarter/mail-x_smtpapi.svg?style=shield)](https://circleci.com/gh/kickstarter/mail-x_smtpapi/tree/master) [![Code Climate](https://codeclimate.com/github/kickstarter/mail-x_smtpapi/badges/gpa.svg)](https://codeclimate.com/github/kickstarter/mail-x_smtpapi)
+
 Integrates support for SendGrid's X-SMTPAPI field into the [Mail](https://github.com/mikel/mail) gem.
 
 Please refer to [SendGrid docs](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html) for ideas of what you can do with the X-SMTPAPI header!
