@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class MailXSMTPAPI::FieldTest < MiniTest::Unit::TestCase
+class MailXSMTPAPI::FieldTest < Minitest::Test
   def test_encoded_with_blank_values
     assert_equal '', subject.new.encoded
   end

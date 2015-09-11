@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class MailXSMTPAPI::AccessorsTest < MiniTest::Unit::TestCase
+class MailXSMTPAPI::AccessorsTest < Minitest::Test
 
   def test_to
     subject.to = 'a@example.com'

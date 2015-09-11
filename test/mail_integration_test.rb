@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-class MailIntegrationTest < MiniTest::Unit::TestCase
+class MailIntegrationTest < Minitest::Test
 
   def test_smtpapi_accessor
     assert subject.smtpapi
