@@ -4,4 +4,4 @@ Bundler.require(:default, :test)
 
 require 'minitest/autorun'
 
-require 'mail/x_smtpapi'
+require 'mail-x_smtpapi'
