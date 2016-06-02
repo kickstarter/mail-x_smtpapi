@@ -1,4 +1,5 @@
 require 'mail'
+require 'json'
 require_relative 'accessors'
 
 module MailXSMTPAPI
