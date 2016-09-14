@@ -12,6 +12,7 @@ module MailXSMTPAPI
     include Substitutions
     include UniqueArguments
     include Category
+    include AsmGroupId
     include Filters
     include Sections
 
