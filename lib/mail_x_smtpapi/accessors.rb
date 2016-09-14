@@ -49,6 +49,16 @@ module MailXSMTPAPI
     end
   end
 
+  module AsmGroupId
+    def asm_group_id
+      value['asm_group_id']
+    end
+
+    def asm_group_id=(val)
+      value['asm_group_id'] = val
+    end
+  end
+
   module Filters
     def filters
       value['filters'] ||= {}

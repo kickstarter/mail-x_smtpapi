@@ -31,6 +31,11 @@ class MailXSMTPAPI::AccessorsTest < Minitest::Test
     assert_equal 'password_reset', subject.category
   end
 
+  def test_asm_group_id
+    subject.asm_group_id = 123
+    assert_equal 123, subject.asm_group_id
+  end
+
   private
 
   def subject
