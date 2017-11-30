@@ -2,7 +2,7 @@ module MailXSMTPAPI
 
   module Recipients
     def to
-      value['to'] ||= []
+      data['to'] ||= []
     end
 
     def to=(val)
@@ -13,7 +13,7 @@ module MailXSMTPAPI
 
   module Substitutions
     def substitutions
-      value['sub'] ||= {}
+      data['sub'] ||= {}
     end
 
     def substitutions=(val)
@@ -30,7 +30,7 @@ module MailXSMTPAPI
 
   module UniqueArguments
     def unique_args
-      value['unique_args'] ||= {}
+      data['unique_args'] ||= {}
     end
 
     def unique_args=(val)
@@ -41,33 +41,33 @@ module MailXSMTPAPI
 
   module Category
     def category
-      value['category']
+      data['category']
     end
 
     def category=(val)
-      value['category'] = val
+      data['category'] = val
     end
   end
 
   module AsmGroupId
     def asm_group_id
-      value['asm_group_id']
+      data['asm_group_id']
     end
 
     def asm_group_id=(val)
-      value['asm_group_id'] = val
+      data['asm_group_id'] = val
     end
   end
 
   module Filters
     def filters
-      value['filters'] ||= {}
+      data['filters'] ||= {}
     end
   end
 
   module Sections
     def sections
-      value['section'] ||= {}
+      data['section'] ||= {}
     end
   end
 

@@ -6,10 +6,11 @@ class MailIntegrationTest < Minitest::Test
     assert subject.smtpapi
     assert subject.smtpapi.empty?
 
-    subject.smtpapi.value['to'] = 'c@example.com'
+    subject.smtpapi.data['to'] = 'c@example.com'
     refute subject.smtpapi.empty?
 
-    assert_equal 'c@example.com', subject.smtpapi.value['to']
+    assert_equal 'c@example.com', subject.smtpapi.data['to']
+    assert_equal '{"to":"c@example.com"}', subject.smtpapi.value
   end
 
   def test_hash_reader
@@ -19,7 +20,8 @@ class MailIntegrationTest < Minitest::Test
 
   def test_hash_writer
     subject['x-smtpapi'] = {'to' => 'c@example.com'}
-    assert_equal 'c@example.com', subject.smtpapi.value['to']
+    assert_equal 'c@example.com', subject.smtpapi.data['to']
+    assert_equal '{"to":"c@example.com"}', subject.smtpapi.value
   end
 
   def test_limited_field
@@ -27,7 +29,8 @@ class MailIntegrationTest < Minitest::Test
     subject['x-smtpapi'] = {'to' => 'd@example.com'}
 
     refute subject['x-smtpapi'].is_a?(Array)
-    assert_equal 'd@example.com', subject['x-smtpapi'].value['to']
+    assert_equal 'd@example.com', subject['x-smtpapi'].data['to']
+    assert_equal '{"to":"d@example.com"}', subject.smtpapi.value
   end
 
   def test_field_name
