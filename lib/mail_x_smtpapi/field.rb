@@ -7,6 +7,8 @@ module MailXSMTPAPI
     FIELD_NAME = 'x-smtpapi'
     CAPITALIZED_FIELD = 'X-SMTPAPI'
 
+    attr_reader :data
+
     # Accessors
     include Recipients
     include Substitutions
@@ -19,7 +21,11 @@ module MailXSMTPAPI
     def initialize(value = nil, charset = 'utf-8')
       self.charset = charset
       self.name = CAPITALIZED_FIELD
-      self.value = value || {}
+      @data = value || {}
+    end
+
+    def value
+      JSON.generate(data)
     end
 
     def encoded
@@ -33,11 +39,11 @@ module MailXSMTPAPI
     # to take advantage of folding, decoded must return a string of
     # JSON with extra spaces inserted for line wrapping.
     def decoded
-      JSON.generate(value).gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')
+      value.gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')
     end
 
     def empty?
-      value.values.all?{|v| !v || v.empty? }
+      data.values.all?{|v| !v || v.empty? }
     end
   end
 end
