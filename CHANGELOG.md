@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 1.2.0
+
+### Non-breaking changes
+
+* fixes for compatibility with mail 2.7.0 (@cainlevy)
+
 ## Version 1.1.0
 
 ### Non-breaking changes
