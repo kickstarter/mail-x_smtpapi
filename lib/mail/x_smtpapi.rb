@@ -20,5 +20,4 @@ end
 MailXSMTPAPI::Field::FIELD_NAME.tap do |name|
   Mail::Field::FIELDS_MAP[name]     = MailXSMTPAPI::Field
   Mail::Field::FIELD_NAME_MAP[name] = MailXSMTPAPI::Field::CAPITALIZED_FIELD
-  Mail::Header::LIMITED_FIELDS      << name
 end
