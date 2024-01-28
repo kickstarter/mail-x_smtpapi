@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.21"
 
   spec.add_dependency "mail", "~> 2.7.1"
-  spec.add_dependency "net-smtp", "~> 0.4.0"
+  spec.add_dependency "net-smtp"
 end
