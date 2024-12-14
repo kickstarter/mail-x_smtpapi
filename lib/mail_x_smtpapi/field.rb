@@ -7,6 +7,8 @@ module MailXSMTPAPI
     FIELD_NAME = 'x-smtpapi'
     CAPITALIZED_FIELD = 'X-SMTPAPI'
 
+    def self.singular? = true
+
     attr_reader :data
 
     # Accessors
