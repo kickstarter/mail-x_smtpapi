@@ -4,10 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'mail_x_smtpapi/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mail-x_smtpapi"
+  spec.name          = "mail-x_smtpapi-ksr"
   spec.version       = MailXSMTPAPI::VERSION
-  spec.authors       = ["Lance Ivy"]
-  spec.email         = ["lance@kickstarter.com"]
+  spec.authors       = ["Kickstarter"]
+  spec.email         = ["devops@kickstarter.com"]
   spec.summary       = %q{Adds SendGrid X-SMTPAPI header support to Mail}
   spec.homepage      = "https://github.com/kickstarter/mail-x_smtpapi"
   spec.license       = "MIT"
