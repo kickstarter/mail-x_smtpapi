@@ -5,5 +5,4 @@ group :development do
   gem 'debug'
 end
 
-# Specify your gem's dependencies in mail-x_smtpapi.gemspec
 gemspec
