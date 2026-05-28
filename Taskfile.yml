@@ -1,0 +1,25 @@
+# https://taskfile.dev
+---
+version: "3"
+
+tasks:
+  init:
+    desc: Initialize project
+    cmds:
+      - bundle install
+
+  release:
+    desc: Publish gem with GitHub
+    preconditions:
+      - sh: git diff HEAD --quiet
+        msg: Refusing to release with local uncommitted changes
+    vars:
+      VERSION:
+        sh: bundle exec ruby -e 'puts "v#{MailXSMTPAPI::VERSION}"'
+    cmds:
+      - gh release create {{.VERSION}} --generate-notes
+
+  test:
+    desc: Run test suite
+    cmds:
+      - bundle exec rake test
