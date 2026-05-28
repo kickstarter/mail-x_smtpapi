@@ -10,7 +10,7 @@ end
 # Redefine release task to push to Gemfury
 Rake::Task['release'].clear
 task :release => %i[build release:guard_clean] do
-  sh "curl --fail --silent -F package=@pkg/ksr-#{Ksr::VERSION}.gem https://${GEMFURY_API_TOKEN}@push.fury.io/kickstarter/"
+  sh "curl --fail --silent -F package=@pkg/mail-x_smtpapi-ksr-#{MailXSMTPAPI::VERSION}.gem https://${GEMFURY_API_TOKEN}@push.fury.io/kickstarter/"
 end
 
 task default: :test
