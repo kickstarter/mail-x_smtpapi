@@ -1,0 +1,16 @@
+---
+name: Setup RubyGems
+description: Setup RubyGems credentials
+inputs:
+  token:
+    description: Gemfury API token
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: setup gemfury
+      shell: bash
+      run: |
+        wget -O fury.tar.gz https://github.com/gemfury/cli/releases/download/v0.23.0/fury-cli_0.23.0_Linux_x86_64.tar.gz
+        tar -xz -C /usr/local/bin -f fury.tar.gz
+        echo "GEMFURY_API_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
