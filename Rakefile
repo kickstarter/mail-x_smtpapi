@@ -1,16 +1,31 @@
+require 'rubygems'
 require 'bundler/gem_tasks'
-
 require 'rake/testtask'
+
+task default: :test
+
 Rake::TestTask.new do |t|
   t.libs << "test"
   t.test_files = FileList['test/*test.rb']
   t.verbose = true
 end
 
-# Redefine release task to push to Gemfury
-Rake::Task['release'].clear
-task :release => %i[build release:guard_clean] do
-  sh "curl --fail --silent -F package=@pkg/mail-x_smtpapi-ksr-#{MailXSMTPAPI::VERSION}.gem https://${GEMFURY_API_TOKEN}@push.fury.io/kickstarter/"
+namespace :gem do
+  require 'bundler/gem_tasks'
+
+  @gem = "pkg/egads-#{MailXSMTPAPI::VERSION}.gem"
+
+  desc "Push #{@gem} to rubygems.org"
+  task :push => %i[test build git:check] do
+    sh %{gem push #{@gem}}
+  end
 end
 
-task default: :test
+namespace :git do
+  desc 'Check git workspace'
+  task :check do
+    sh %{git diff HEAD --quiet} do |ok|
+      abort "\e[31mRefusing to continue - git workspace is dirty\e[0m" unless ok
+    end
+  end
+end
