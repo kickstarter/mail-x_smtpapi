@@ -1,4 +1,4 @@
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 
 require 'rake/testtask'
 Rake::TestTask.new do |t|
@@ -7,4 +7,10 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
-task :default => :test
+# Redefine release task to push to Gemfury
+Rake::Task['release'].clear
+task :release => %i[build release:guard_clean] do
+  sh "curl --fail --silent -F package=@pkg/mail-x_smtpapi-ksr-#{MailXSMTPAPI::VERSION}.gem https://${GEMFURY_API_TOKEN}@push.fury.io/kickstarter/"
+end
+
+task default: :test

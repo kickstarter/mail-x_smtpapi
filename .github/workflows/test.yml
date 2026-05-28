@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Ruby v${{ matrix.ruby }}, Mail v${{ matrix.mail }}
+    strategy:
+      matrix:
+        mail:
+          - '2.8.1'
+          - '2.9.0'
+        ruby:
+          - '3.3'
+          - '3.4'
+          - '4.0'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle add mail -v "${{ matrix.mail }}"
+      - run: bundle exec rake

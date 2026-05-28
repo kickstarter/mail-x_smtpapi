@@ -17,10 +17,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", ">= 2.2.3"
-  spec.add_development_dependency "rake", "~> 13.1"
-  spec.add_development_dependency "minitest", "~> 5.21"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "minitest"
 
-  spec.add_dependency "mail", "~> 2.8.1"
+  spec.add_dependency "mail", "~> 2.8"
   spec.add_dependency "net-smtp"
 end
