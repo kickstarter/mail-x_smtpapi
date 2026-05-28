@@ -5,7 +5,7 @@ require_relative 'accessors'
 module MailXSMTPAPI
   class Field < ::Mail::UnstructuredField
     FIELD_NAME = 'x-smtpapi'
-    CAPITALIZED_FIELD = 'X-SMTPAPI'
+    NAME = CAPITALIZED_FIELD = 'X-SMTPAPI'
 
     def self.singular? = true
 

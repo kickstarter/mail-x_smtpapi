@@ -18,6 +18,6 @@ module Mail
 end
 
 MailXSMTPAPI::Field::FIELD_NAME.tap do |name|
-  Mail::Field::FIELDS_MAP[name]     = MailXSMTPAPI::Field
+  Mail::Field::FIELDS_MAP[name]     = Gem::Version.new(Mail::VERSION::STRING) >= Gem::Version.new('2.9.0') ? MailXSMTPAPI::Field.to_s : MailXSMTPAPI::Field
   Mail::Field::FIELD_NAME_MAP[name] = MailXSMTPAPI::Field::CAPITALIZED_FIELD
 end
