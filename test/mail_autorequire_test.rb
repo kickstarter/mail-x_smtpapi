@@ -5,24 +5,43 @@ class MailAutorequireTest < Minitest::Test
   PROJECT_ROOT = File.expand_path('..', __dir__)
 
   def test_bundler_default_require_loads_smtpapi_extension
-    out, err, status = run_bundle_ruby('require "bundler"; Bundler.require(:default); require "mail"; puts Mail.new.respond_to?(:smtpapi)')
+    script = <<~RUBY
+      require 'bundler'
+      Bundler.require(:default)
+      require 'mail'
+      puts Mail.new.respond_to?(:smtpapi)
+    RUBY
+
+    out, err, status = run_bundle_ruby(script)
 
     assert status.success?, "Expected script to succeed, got:\n#{err}"
-    assert_equal "true\n", out
+    assert_equal 'true', out.chomp
   end
 
   def test_hyphenated_gem_name_is_requireable
-    out, err, status = run_bundle_ruby('require "mail-x_smtpapi-ksr"; require "mail"; puts Mail.new.respond_to?(:smtpapi)')
+    script = <<~RUBY
+      require 'mail-x_smtpapi-ksr'
+      require 'mail'
+      puts Mail.new.respond_to?(:smtpapi)
+    RUBY
+
+    out, err, status = run_bundle_ruby(script)
 
     assert status.success?, "Expected script to succeed, got:\n#{err}"
-    assert_equal "true\n", out
+    assert_equal 'true', out.chomp
   end
 
   def test_slash_form_is_requireable
-    out, err, status = run_bundle_ruby('require "mail/x_smtpapi/ksr"; require "mail"; puts Mail.new.respond_to?(:smtpapi)')
+    script = <<~RUBY
+      require 'mail/x_smtpapi/ksr'
+      require 'mail'
+      puts Mail.new.respond_to?(:smtpapi)
+    RUBY
+
+    out, err, status = run_bundle_ruby(script)
 
     assert status.success?, "Expected script to succeed, got:\n#{err}"
-    assert_equal "true\n", out
+    assert_equal 'true', out.chomp
   end
 
   private
